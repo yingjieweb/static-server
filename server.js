@@ -23,10 +23,10 @@ let server = http.createServer(function(request, response){
 
   response.statusCode = 200;
   //设置默认首页
-  let superPath = path === '/' ? '/index.html' :path;
+  let filePath = path === '/' ? '/index.html' :path;
 
-  const index = superPath.lastIndexOf('.'); //找到后缀 . 的下标
-  const suffix = superPath.substring(index);  //拿到 . 及后面的后缀
+  const index = filePath.lastIndexOf('.'); //找到后缀 . 的下标
+  const suffix = filePath.substring(index);  //拿到 . 及后面的后缀
   const fileTypes = {
     '.html':'text/html',
     '.css':'text/css',
@@ -38,7 +38,7 @@ let server = http.createServer(function(request, response){
 
   let content;
   try{
-    content = fs.readFileSync(`./src/${superPath}`);
+    content = fs.readFileSync(`./src/${filePath}`);
   }catch (error) {
     response.statusCode = 404;
     content = '你在神思啥呢，老弟！'
